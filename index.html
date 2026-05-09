@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Design Thinking Studio</title>
+  <link rel="stylesheet" href="styles/main.css" />
+  <link rel="stylesheet" href="styles/components.css" />
+  <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand" id="brand">
+      <span class="logo">◇</span>
+      <span class="brand-text">Design Thinking Studio</span>
+    </div>
+    <div class="topbar-actions">
+      <div id="presence-bar" class="presence-bar" hidden></div>
+      <button id="share-btn" class="btn btn-ghost" hidden>Share</button>
+      <button id="theme-toggle" class="btn btn-ghost" aria-label="Toggle theme">
+        <span class="theme-icon">🌙</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- LANDING VIEW -->
+  <main id="landing-view" class="view">
+    <section class="hero">
+      <h1 class="hero-title">Design Thinking Studio</h1>
+      <p class="hero-tagline">Collaborate, ideate, prototype, and test ideas together</p>
+
+      <div class="hero-actions">
+        <button id="create-ws-btn" class="btn btn-primary btn-lg">Create New Workspace</button>
+        <div class="join-form">
+          <input id="join-code-input" type="text" placeholder="Enter workspace code" maxlength="40" />
+          <button id="join-ws-btn" class="btn btn-secondary">Join Workspace</button>
+        </div>
+      </div>
+
+      <div class="stage-preview">
+        <div class="stage-pill">1. Empathize</div>
+        <div class="stage-pill">2. Define</div>
+        <div class="stage-pill">3. Ideate</div>
+        <div class="stage-pill">4. Prototype</div>
+        <div class="stage-pill">5. Test</div>
+      </div>
+    </section>
+  </main>
+
+  <!-- WORKSPACE VIEW -->
+  <main id="workspace-view" class="view" hidden>
+    <nav id="stepper" class="stepper" aria-label="Design thinking stages"></nav>
+    <section id="stage-panel" class="stage-panel"></section>
+  </main>
+
+  <!-- Name prompt modal -->
+  <div id="name-modal" class="modal" hidden>
+    <div class="modal-content">
+      <h2>Join workspace</h2>
+      <p class="muted">Enter a display name so others can see your contributions.</p>
+      <input id="name-input" type="text" placeholder="Your name" maxlength="40" />
+      <div class="modal-actions">
+        <button id="name-submit" class="btn btn-primary">Continue</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Share / QR modal -->
+  <div id="share-modal" class="modal" hidden>
+    <div class="modal-content">
+      <button class="modal-close" data-close="share-modal" aria-label="Close">×</button>
+      <h2>Share workspace</h2>
+      <p class="muted">Anyone with this link or QR code can join.</p>
+      <div id="qr-container" class="qr-container"></div>
+      <div class="share-link-row">
+        <input id="share-link" type="text" readonly />
+        <button id="copy-link-btn" class="btn btn-secondary">Copy</button>
+      </div>
+      <div class="share-code-row">
+        <span class="muted">Workspace code:</span>
+        <code id="share-code"></code>
+      </div>
+    </div>
+  </div>
+
+  <!-- Note editor modal -->
+  <div id="note-modal" class="modal" hidden>
+    <div class="modal-content">
+      <button class="modal-close" data-close="note-modal" aria-label="Close">×</button>
+      <h2 id="note-modal-title">Add note</h2>
+      <input id="note-title" type="text" placeholder="Title" maxlength="80" />
+      <textarea id="note-body" placeholder="Description" rows="4" maxlength="1000"></textarea>
+      <input id="note-category" type="text" placeholder="Category (optional)" maxlength="40" />
+      <div class="modal-actions">
+        <button id="note-cancel" class="btn btn-ghost">Cancel</button>
+        <button id="note-save" class="btn btn-primary">Save</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast" hidden></div>
+
+  <footer class="site-footer">
+    Powered by <a href="https://www.tertiarycourses.com.sg/" target="_blank" rel="noopener noreferrer">Tertiary Infotech Academy Pte Ltd</a>
+  </footer>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
